@@ -9,29 +9,29 @@ var uuuidv1 = require('uuidv1');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-//--- TODO: set Middleware Functions---//
+//--- Set Middleware Functions---//
 
-    //-- parsing incoming string/ data from the client
+    //-- Parsing incoming string/ data from the client --//
 app.use(express.urlencoded({ extended: true }));
     //-- serve the contents of the public directory as static files
 app.use(express.json());
 app.use(express.static("public"));
 
-// TODO: define the routing
+//--- Define the routing ---//
 
-    // TODO: GET for '/notes'
+    //-- GET for '/notes' --//
     app.get('/notes',(req,res)=>{
         res.sendFile(path.join(__dirname, './public/notes.html'));
     });
 
-    // TODO: GET for '/api/notes' from the db.json file and sends a JSON response
+    //-- GET for '/api/notes' from the db.json file and sends a JSON response--//
     app.get('/api/notes',(req,res)=>{
         const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), 'utf8');
         const parseNotes = JSON.parse(dataNotes);
         res.json(parseNotes);
     });
 
-    // TODO: POST route for `/api/notes` that receives a JSON object from the request body, adds an ID to it, writes the new data to the "db.json" file, and sends a success message as a JSON response
+    //-- POST route for `/api/notes` that receives a JSON object from the request body and adds an ID to it --//
     app.post('/api/notes',(req,res) => {
         const dataNotes = fs.readFileSync(path.join(__dirname,'./db/db.json'),'utf8');
         const parseNotes = JSON.parse(dataNotes);
@@ -42,7 +42,7 @@ app.use(express.static("public"));
         res.json('You have added a new note!');
     });
 
-    // TODO: catch-all GET route for any other endpoint that sends the `index.html` file located in the "public" folder
+    // "Catch-all" GET route for any other endpoint that sends to  'index.html' --// 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname,'./public/index.html'));
     });

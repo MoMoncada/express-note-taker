@@ -9,6 +9,8 @@ var uuuidv1 = require('uuidv1');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+
+
 //--- Set Middleware Functions---//
 
     //-- Parsing incoming string/ data from the client --//
@@ -24,12 +26,14 @@ app.use(express.static("public"));
         res.sendFile(path.join(__dirname, './public/notes.html'));
     });
 
+
     //-- GET route for '/api/notes' from the db.json file and sends a JSON response--//
     app.get('/api/notes',(req,res)=>{
         const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), 'utf8');
         const parseNotes = JSON.parse(dataNotes);
         res.json(parseNotes);
     });
+
 
     //-- POST route for `/api/notes` that receives a JSON object from the request body and adds an ID to it --//
     app.post('/api/notes',(req,res) => {
@@ -42,12 +46,14 @@ app.use(express.static("public"));
         res.json('You have added a new note!');
     });
 
+
     //-- "Catch-all" GET route for any other endpoint that sends to  'index.html' --// 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname,'./public/index.html'));
     });
 
-    // TODO: BONUS ROUND: DELETE route for '/api/notes/ (use http://localhost:3001/api/notes/:83243cd0-a89f-11ed-87e4-bd52b99482a7) --//
+
+    //-- BONUS ROUND: DELETE route for '/api/notes/ (use http://localhost:3001/api/notes/:id) --//
     app.delete('/api/notes/:id', function (req, res) {
         console.log("Req.params:", req.params);
         let deletedNoteId = req.params.id;
@@ -83,9 +89,6 @@ app.use(express.static("public"));
     
     
      
-
-
-
     app.listen(PORT, () =>
     console.log(`App listening at http://localhost:${PORT} 🚀`)
   );

@@ -1,16 +1,17 @@
 [
   {
-    "title": "Test Title",
-    "text": "Test text"
+    "title": "I decided to work",
+    "text": "Finally 🍷",
+    "id": "10194840-a8b6-11ed-88d8-b1589caee1a6"
   },
   {
-    "title": "My First Note",
-    "text": "Testing my first note",
-    "id": "ee1265d0-a895-11ed-8a7f-e5708e8eb3dd"
+    "title": "Testing before deploying",
+    "text": "Trust issues",
+    "id": "bd28cd10-a8b8-11ed-8b26-fe32e401d8a6"
   },
   {
-    "title": "Taking notes",
-    "text": "I'm testing you insomnia!",
-    "id": "bf107140-a896-11ed-8475-b7df7de77d89"
+    "title": "More Notes to test",
+    "text": "Testing ",
+    "id": "c3d4deb0-a8b8-11ed-8738-440c363304e3"
   }
 ]

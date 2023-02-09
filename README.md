@@ -30,7 +30,7 @@ To develop this application I have used Express js, Insomnia and Heroku.
 
 ## Application Documentation
 
-* Deployed application: 
+* Deployed application: https://fathomless-forest-52474.herokuapp.com/
 
 * Github Repo: https://github.com/MoMoncada/express-note-taker
 

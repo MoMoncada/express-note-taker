@@ -20,6 +20,9 @@ app.use(express.static("public"));
 // TODO: define the routing
 
     // TODO: GET for '/notes'
+    app.get('/notes',(req,res)=>{
+        res.sendFile(path.join(__dirname, './public/notes.html'));
+    });
 
     // TODO: GET for '/api/notes' from the db.json file and sends a JSON response
 
@@ -28,4 +31,10 @@ app.use(express.static("public"));
     // TODO: catch-all GET route for any other endpoint that sends the `index.html` file located in the "public" folder
 
     // TODO: BONUS ROUND: DELETE route for '/api/notes/:id' that deletes the note with the specified ID from the "db.json" file
-    
+
+
+
+    app.listen(PORT, () =>
+    console.log(`App listening at http://localhost:${PORT} 🚀`)
+  );
+  

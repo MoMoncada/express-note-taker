@@ -1,1 +1,16 @@
-[{"title":"Test Title","text":"Test text"},{"title":"My First Note","text":"Testing my first note","id":"ee1265d0-a895-11ed-8a7f-e5708e8eb3dd"},{"title":"Taking notes","text":"I'm testing you insomnia!","id":"bf107140-a896-11ed-8475-b7df7de77d89"}]
+[
+  {
+    "title": "Test Title",
+    "text": "Test text"
+  },
+  {
+    "title": "My First Note",
+    "text": "Testing my first note",
+    "id": "ee1265d0-a895-11ed-8a7f-e5708e8eb3dd"
+  },
+  {
+    "title": "Taking notes",
+    "text": "I'm testing you insomnia!",
+    "id": "bf107140-a896-11ed-8475-b7df7de77d89"
+  }
+]

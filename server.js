@@ -13,18 +13,18 @@ const app = express();
 
     //-- Parsing incoming string/ data from the client --//
 app.use(express.urlencoded({ extended: true }));
-    //-- serve the contents of the public directory as static files
 app.use(express.json());
 app.use(express.static("public"));
 
-//--- Define the routing ---//
 
-    //-- GET for '/notes' --//
+//--- Defining the routing ---//
+
+    //-- GET route for '/notes' --//
     app.get('/notes',(req,res)=>{
         res.sendFile(path.join(__dirname, './public/notes.html'));
     });
 
-    //-- GET for '/api/notes' from the db.json file and sends a JSON response--//
+    //-- GET route for '/api/notes' from the db.json file and sends a JSON response--//
     app.get('/api/notes',(req,res)=>{
         const dataNotes = fs.readFileSync(path.join(__dirname, './db/db.json'), 'utf8');
         const parseNotes = JSON.parse(dataNotes);
@@ -42,12 +42,47 @@ app.use(express.static("public"));
         res.json('You have added a new note!');
     });
 
-    // "Catch-all" GET route for any other endpoint that sends to  'index.html' --// 
+    //-- "Catch-all" GET route for any other endpoint that sends to  'index.html' --// 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname,'./public/index.html'));
     });
 
-    // TODO: BONUS ROUND: DELETE route for '/api/notes/:id' that deletes the note with the specified ID from the "db.json" file
+    // TODO: BONUS ROUND: DELETE route for '/api/notes/ (use http://localhost:3001/api/notes/:83243cd0-a89f-11ed-87e4-bd52b99482a7) --//
+    app.delete('/api/notes/:id', function (req, res) {
+        console.log("Req.params:", req.params);
+        let deletedNoteId = req.params.id;
+        console.log("Deleted note id:", deletedNoteId);
+    
+        let deletedNoteIndex = -1;
+        for (let i = 0; i < dbFile.length; i++) {
+            if (deletedNoteId === dbFile[i].id) {
+                deletedNoteIndex = i;
+                break;
+            }
+        }
+    
+        if (deletedNoteIndex === -1) {
+            res.status(404).json({error: "Note not found"});
+            return;
+        }
+    
+        dbFile.splice(deletedNoteIndex, 1); 
+    
+        let dataJson = JSON.stringify(dbFile, null, 2);
+        fs.writeFile('./db/db.json', dataJson, function (err) {
+            if (err) {
+                res.status(500).json({error: "Failed to write to file"});
+                return;
+            }
+    
+            console.log('Your note has been deleted successfully!');
+            res.json(dbFile);
+        });
+    });
+    
+    
+    
+     
 
 
 
